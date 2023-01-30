@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Task</title>
+</head>
+
+<body>
+    <h1>Edit task</h1>
+
+    <form method="post" action="/task/update/<%= response.taskId %>" class="form-container">
+        <div style="width: 50%">
+            <input type="text" name="taskDetail" class="form-control" value="<%= response.taskDetail %>">
+            <select name="taskStatus" id="taskStatus">
+                <option value=""><%= response.taskStatus %></option>
+                <option value="Not Started">Not Started</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Complete">Complete</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-sm btn-success">Edit</button>
+    </form>
+
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+<title>Task</title>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        width: 80%;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+        margin-top: 20px;
+        height: auto;
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .title {
+        color: grey;
+        font-size: 18px;
+    }
+
+    a {
+        text-decoration: none;
+        font-size: 22px;
+        color: black;
+    }
+    
+    button:hover,
+    a:hover {
+        opacity: 0.7;
+    }
+    
+    button{
+      height: 40px;
+      width: 80px;
+    }
+
+    .addFieldContainer{
+    width: 90%;
+    display: flex;
+    align-items: center;
+  }
+
+
+
+    .singleTask {
+        width: 90%;
+        height: 50px;
+        display: flex;
+        margin: auto;
+        background-color: rgba(106, 192, 192, 0.63);
+        margin: 10px 0;
+        border-radius: 5px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+    .singleTaskLeft {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        text-align: center;
+    }
+
+    .singleTaskRight {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    .button-container {
+        width: 50%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .form-container {
+        width: 60%;
+        margin: auto;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .toggle-button {
+        width: 80%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+
+</style>
+
+</head>
+
+<body>
+    <div class="card">
+        <h1>My Tasks</h1>
+        <form method="post" action="/task/get/search" class="form-container" style="margin: 10px 0 20px;">
+            <!-- search by task detail -->
+            <div style="width: 50%">
+                <input type="text" name="taskDetail" class="form-control" id="searchInput" placeholder="Search..."
+                    onclick="search()">
+            </div>
+        </form>
+
+        <!-- add task -->
+
+        <div class="addFieldContainer">
+            <div style=" width:70% ;">
+                <form method="post"  id="myForm" action="/task/add" class="form-container" style="margin-left:40%;">
+                    <div style="width: 70%">
+                        <input type="text" name="taskDetail" class="form-control" placeholder="Add New Task">
+                        <select name="taskStatus" style="margin-top: 5px;  border-radius: 5px ;">
+                            <option value="Not Started">Not Started</option>
+                            <option value="In Progress">In Progress</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-success addButton">Add Task</button>
+                </form>
+            </div>
+
+            <!-- clear all -->
+            <div style="margin-top: -1.5em;">
+                <button class="btn btn-sm btn-danger" onclick="deleteAll()"">Clear All</button>
+            </div>
+        </div>
+        <br>
+
+        <!-- check status -->
+
+        <div class="toggle-button">
+            <select id="taskStatus" onchange="selectTaskStatus()" style="border-radius: 5px ;">
+                <option value="" disabled selected hidden>Task Status</option>
+                <option value="All Task"></a>All Task</option>
+                <option value="Complete">Complete</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Not Started">Not Started</option>
+            </select>
+
+        </div>
+
+<!-- get all data -->
+
+<% if(response) { %>
+        <% for(let ele of response) {%>
+            <div class="singleTask">
+                <div class="singleTaskLeft">
+                    <p>
+                        <%= ele.taskDetail %>
+                    </p>
+                </div>
+                <div class="singleTaskRight">
+                    <p>
+                        <%= ele.taskStatus %>
+                    </p>
+                    <div class="button-container">
+
+                        <button type="click" class="btn btn-sm btn-success"><a
+                                href="/task/update/<%= ele.taskId %>">Edit</a></button>
+                        <button type="submit" class="btn btn-sm btn-danger"><a
+                                href="/task/delete/<%= ele.taskId %>">Delete</a></button>
+                    </div>
+                </div>
+
+            </div>
+
+            <%}%>
+
+            <%}%>
+                <div>
+                    <button class="btn btn-danger btn-sm" style="margin-left:-100px;"><a
+                            href="/auth/logout">Logout</a></button>
+                </div>
+    </div>
+</body>
+
+<script>
+    async function deleteAll() {
+        await fetch(`http://localhost:3000/task/delete/all`, { method: 'DELETE' });
+        location.replace(`http://localhost:3000/task/get`)
+    }
+
+    function search() {
+        input = document.getElementById("searchInput");
+        input.addEventListener("keypress", async function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                const query = document.getElementById('searchInput').value
+                console.log(query)
+                await fetch(`http://localhost:3000/task/get/search?taskDetail=${query}`, { method: 'get' })
+                location.replace(`http://localhost:3000/task/get/search?taskDetail=${query}`)
+            }
+        });
+    }
+
+    async function selectTaskStatus() {
+        const query = document.getElementById('taskStatus').value
+        await fetch(`http://localhost:3000/task/search/taskstatus?taskStatus=${query}`, { method: 'GET' });
+        location.replace(`http://localhost:3000/task/search/taskstatus?taskStatus=${query}`)
+    }
+
+    // async function update(id) {
+    //     await fetch(`http://localhost:3000/task/update/${id}`, { method: 'POST' });
+    //     location.replace(`http://localhost:3000/task/update/${id}`);
+    // }
+
+
+</script>
+<script type="text/javascript">
+    function preventBack() { window.history.forward(); }
+    setTimeout("preventBack()", 0);
+    window.onunload = function () { null };
+</script>
+
+
+
+</html>

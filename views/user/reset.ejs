@@ -1,0 +1,29 @@
+<!------ Include the above in your HEAD tag ---------->
+
+<%- include('../head/head.ejs') %>
+
+
+    <body>
+        <dvi class="container h-90" style="margin-top:10%;">
+            <div class="d-flex justify-content-center">
+                <div class="card mt-5 col-md-4 animated bounceInDown myForm">
+                    <div class="card-header text-center">
+                        <h4>Reset Password</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" action="/auth/reset">
+                            <div id="dynamic_container">
+                                <div class="input-group mt-3">
+                                    <input type="text" name="userEmail" placeholder="Your Email" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button class="btn btn-info submit_btn"><i class="fas fa-arrow-alt-circle-right"></i>
+                                    Rest Password</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </dvi>
+    </body>

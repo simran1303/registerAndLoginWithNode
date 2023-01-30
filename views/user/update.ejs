@@ -1,0 +1,88 @@
+<!------ Include the above in your HEAD tag ---------->
+<%- include('../head/head.ejs') %>
+
+<body>
+    <dvi class="container h-90" style="margin-top:10%;">
+        <div class="d-flex justify-content-center">
+            <div class="card mt-5 col-md-4 animated bounceInDown myForm">
+                <div class="card-header text-center">
+                    <h4>Profile Edit Form</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/auth/update">
+                        <div id="dynamic_container">
+                            <div class="input-group">
+                                <input type="text" name="userFirstName" placeholder="Your First Name"
+                                    class="form-control" />
+                            </div>
+                            <div class="input-group mt-3">
+                                <input type="text" name="userLastName" placeholder="Your Last Name"
+                                    class="form-control" />
+                            </div>
+                            <!-- <div class="input-group mt-3">
+                                <input type="text" name="userEmail" placeholder="Your Email" class="form-control" />
+                            </div> -->
+                            <div class="input-group mt-3">
+                                <input type="password" name="userPassword" placeholder="Password"
+                                    class="form-control" />
+                            </div>
+                            <!-- <div class="input-group mt-3">
+                                <input type="password" name="userConfirmPassword" placeholder="Confirm Password"
+                                    class="form-control" />
+                            </div> -->
+                            <div class="input-group mt-3">
+                                <textarea id="userBio" name="userBio" cols="21" rows="3" placeholder="Your Bio"
+                                    class="form-control"></textarea>
+                            </div>
+                            <!-- <div class="input-group mt-3">
+                                <input type="file" name="userPhoto" placeholder="Your Image"
+                                    class="form-control" />
+                            </div> -->
+                            <div class="card-footer text-center">
+                                <button class="btn btn-success submit_btn"><i class="fas fa-arrow-alt-circle-right"></i>
+                                    Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </dvi>
+</body>
+
+</html>
+
+
+
+
+
+
+
+<!-- <div>
+    <h1>Edit Your Profile</h1>
+      <form method="POST" action="/auth/update">
+        <div class="form-control">
+            <div>
+                <label for="userFirstName" aria-hidden="true">First Name</label>&nbsp;&nbsp;
+                <input type="text" name="userFirstName" placeholder="User first name">
+            </div>
+            <div>
+                <label for="userLastName" aria-hidden="true">Last Name</label>&nbsp;&nbsp;
+                <input type="text" name="userLastName" placeholder="User last name">
+            </div>
+             <div>
+                <label for="userEmail" aria-hidden="true">Email</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="email" name="userEmail" placeholder="User email">
+            </div> 
+            <div>
+                <label for="Password" aria-hidden="true">Password</label>&nbsp;&nbsp;&nbsp;&nbsp; 
+                <input type="password" name="userPassword" placeholder="Password">
+            </div>
+            <div>
+                <label for="userBio" aria-hidden="true">Bio</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" name="userBio" placeholder="bio">
+            </div>
+            <button type="submit">Submit</button>
+        </div>
+    </from>
+</div -->

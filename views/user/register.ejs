@@ -1,0 +1,57 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<%- include('../head/head.ejs') %>
+<body>
+    <dvi class="container h-90" style="margin-top:10%;">
+        <div class="d-flex justify-content-center">
+            <div class="card mt-5 col-md-4 animated bounceInDown myForm">
+                <div class="card-header text-center">
+                    <h4>Registration Form</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/auth/register" , enctype="multipart/form-data">
+                        <div id="dynamic_container">
+                            <div class="input-group">
+                                <input type="text" name="userFirstName" placeholder="Your First Name"
+                                    class="form-control" />
+                            </div>
+                            <div class="input-group mt-3">
+                                <input type="text" name="userLastName" placeholder="Your Last Name"
+                                    class="form-control" />
+                            </div>
+                            <div class="input-group mt-3">
+                                <input type="text" name="userEmail" placeholder="Your Email" class="form-control" />
+                            </div>
+                            <div class="input-group mt-3">
+                                <input type="password" name="userPassword" placeholder="Password"
+                                    class="form-control" />
+                            </div>
+                            <div class="input-group mt-3">
+                                <input type="password" name="userConfirmPassword" placeholder="Confirm Password"
+                                    class="form-control" />
+                            </div>
+                            <div class="input-group mt-3">
+                                <textarea id="userBio" name="userBio" cols="21" rows="3" placeholder="Your Bio"
+                                    class="form-control"></textarea>
+                            </div>
+                            <div class="input-group mt-3">
+                                <input type="file" name="userPhoto" placeholder="Your Image"
+                                    class="form-control" />
+                            </div>
+
+                            <div class="card-footer text-center">
+                                <button class="btn btn-success submit_btn"><i class="fas fa-arrow-alt-circle-right"></i>
+                                    Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+               
+            </div>
+        </div>
+    </dvi>
+</body>
+
+</html>
+
